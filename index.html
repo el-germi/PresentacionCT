@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGILE, Grupo 1</title>
+    <script>
+        let i = 1;
+        let img = null;
+
+        function prev() {
+            i--;
+            relod();
+        }
+
+        function next() {
+            i++;
+            relod();
+        }
+
+        function relod() {
+            img.src = "img/"+i+".png";
+            document.title = "AGILE, pagina "+i;
+        }
+
+        document.addEventListener("DOMContentLoaded", ()=>{
+            img = document.getElementById("img");
+            relod();
+        });
+
+        document.addEventListener("keydown", e=>{
+            var event = window.event ? window.event : e;
+            if (e.keyCode == '37') {//izq
+                prev();
+            } else if (e.keyCode == '39') {//der
+                next();
+            }
+        });
+    </script>
+    <style>
+        img {
+            /*aspect-ratio: auto;*/
+            max-height: 99vh;
+            max-width: 90vw;
+            /*width: 9999px;*/
+            /*height: auto;*/
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        div {
+            height: 99vh;
+            flex-grow: 1;
+        }
+
+        body {
+            background-color: rgb(81, 81, 81);
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="<" onclick="prev()">
+    <div><img id="img" src=""></div>
+    <input type="button" value=">" onclick="next()">
+</body>
+</html>
